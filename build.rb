@@ -1,4 +1,17 @@
-#!/usr/bin/env mruby
+#!/usr/bin/env ruby
+
+def build_mruby
+  repository="https://github.com/mruby/mruby.git"
+  dir="mruby"
+  mruby_config="../build_config.rb"
+  frameworks_path="$HOME/Library/Frameworks"
+
+  `git clone -b 1.4.0 #{repository} #{dir}`
+
+  Dir.chdir(dir) do
+    system "env FRAMEWORKS_PATH=#{frameworks_path} MRUBY_CONFIG=#{mruby_config} ruby minirake -v all"
+  end
+end
 
 def build_macos
   Dir.chdir ROOT_DIR
@@ -63,5 +76,6 @@ end
 if $0==__FILE__
   FRAMEWORKS_PATH = "~/Library/Frameworks"
   ROOT_DIR = File.expand_path("./")
+  build_mruby
   build_macos
 end

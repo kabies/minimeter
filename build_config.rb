@@ -1,6 +1,5 @@
 MRuby::Build.new do |conf|
   toolchain :gcc
-  conf.enable_test
 
   conf.gem github:'mruby-sdl2/mruby-sdl2' do |g|
     g.cc.include_paths << "#{ENV['FRAMEWORKS_PATH']}/SDL2.framework/Headers/"
