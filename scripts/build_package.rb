@@ -93,4 +93,7 @@ licenses.reject{|l| l.author.end_with? "mruby developers" }.each do |license|
   end
 end
 
-`rm minimeter.zip; zip minimeter.zip -r minimeter.app LICENSES.txt -x "*.DS_Store"`
+f.close
+
+`rm minimeter.zip`
+`zip minimeter.zip  LICENSES.txt -r minimeter.app -x "*.DS_Store"`
