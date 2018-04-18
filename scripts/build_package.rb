@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+require "json"
 require "fileutils"
 
 MIT=<<EOS
@@ -118,5 +119,8 @@ f.puts "# SDL2 2.0.8"
 f.puts SDL
 f.close
 
-`rm minimeter.zip`
-`zip minimeter.zip  LICENSES.txt -r minimeter.app -x "*.DS_Store"`
+plist = JSON.parse `plutil -convert json minimeter.app/Contents/Info.plist -o -`
+version = plist["CFBundleVersion"]
+
+`rm minimeter*.zip`
+`zip minimeter-#{version}.zip  LICENSES.txt -r minimeter.app -x "*.DS_Store"`
