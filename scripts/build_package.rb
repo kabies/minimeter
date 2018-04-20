@@ -123,4 +123,4 @@ plist = JSON.parse `plutil -convert json minimeter.app/Contents/Info.plist -o -`
 version = plist["CFBundleVersion"]
 
 `rm minimeter*.zip`
-`zip minimeter-#{version}.zip  LICENSES.txt -r minimeter.app -x "*.DS_Store"`
+`zip minimeter-#{version}.zip -ry LICENSES.txt minimeter.app -x "*.DS_Store"`
